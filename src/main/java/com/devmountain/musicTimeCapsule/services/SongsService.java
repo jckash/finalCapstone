@@ -8,7 +8,7 @@ public interface SongsService {
     void addSong(SongsDto songsDto, Long userId);
 
     @Transactional
-    void deleteNoteById(Long songsId);
+    void deleteSongById(Long songsId);
 
     //Update the parts of the song
     @Transactional

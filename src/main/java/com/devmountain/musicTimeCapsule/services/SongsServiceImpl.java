@@ -33,8 +33,8 @@ public void addSong(SongsDto songsDto, Long userId){
 
 @Override
 @Transactional
-public void deleteNoteById(Long songsId){
-    Optional<Songs> songsOptional = songsRepository.findById(songsId);
+public void deleteSongById(Long songId) {
+    Optional<Songs> songsOptional = songsRepository.findById(songId);
     songsOptional.ifPresent(songs -> songsRepository.delete(songs));
 }
 
