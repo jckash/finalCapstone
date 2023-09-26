@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MemoryController {
 
@@ -26,6 +27,16 @@ public class MemoryController {
     public void deleteMemoryById(@PathVariable Long memoryId){
         memoriesService.deleteMemoryById(memoryId);
     }
+
+    @PutMapping
+public void updateMemory(@RequestBody MemoriesDto memoriesDto){
+        memoriesService.updateMemoryById(memoriesDto);
+}
+
+@GetMapping
+public Optional<MemoriesDto> getMemoryById(@PathVariable Long memoryId){
+        return memoriesService.getMemoriesById(memoryId);
+}
 
 
 
