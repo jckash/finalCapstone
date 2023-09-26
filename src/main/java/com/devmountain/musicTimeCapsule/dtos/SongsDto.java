@@ -21,9 +21,6 @@ public class SongsDto implements Serializable {
 
 
     public SongsDto(Songs songs){
-        if (songs.getId() != null){
-            this.id = songs.getId();
-        }
         if (songs.getSongName() != null){
             this.songName = songs.getSongName();
         }

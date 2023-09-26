@@ -3,9 +3,15 @@ package com.devmountain.musicTimeCapsule.entities;
 import com.devmountain.musicTimeCapsule.dtos.MemoriesDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Memories")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Memories {
 
     @Id
@@ -42,8 +48,6 @@ public class Memories {
         this.memory = memory;
     }
 
-    public Memories() {
-    }
 
     public Memories(Long id, String season, String memory) {
         this.id = id;

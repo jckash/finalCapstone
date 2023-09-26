@@ -54,7 +54,7 @@ public void updateMemoryById(MemoriesDto memoriesDto){
 
 //get memories
 @Override
-public List<MemoriesDto> getAllMemoriesByUserId(Long UserId){
+public List<MemoriesDto> getAllMemoriesByUserId(Long userId){
         Optional<Users> usersOptional = userRepository.findById(userId);
         if (usersOptional.isPresent()){
             List<Memories> memoriesList = memoriesRepository.findAllByUserEquals(usersOptional.get());

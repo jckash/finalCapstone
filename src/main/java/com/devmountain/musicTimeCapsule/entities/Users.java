@@ -3,11 +3,18 @@ package com.devmountain.musicTimeCapsule.entities;
 import com.devmountain.musicTimeCapsule.dtos.UsersDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 
 @Entity
 @Table(name = "User")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Users {
 
    @Id
@@ -55,8 +62,6 @@ private String username;
         this.email = email;
     }
 
-    public Users() {
-    }
 
     public Users(Long id, String username, String password, String email) {
         this.id = id;

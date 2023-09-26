@@ -3,9 +3,16 @@ package com.devmountain.musicTimeCapsule.entities;
 import com.devmountain.musicTimeCapsule.dtos.SongsDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Songs")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Songs {
 
     @Id
@@ -53,8 +60,6 @@ public class Songs {
         this.album = album;
     }
 
-    public Songs() {
-    }
 
     public Songs(long id, String songName, String artist, String album) {
         this.id = id;
