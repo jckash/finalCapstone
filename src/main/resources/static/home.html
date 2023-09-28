@@ -8,8 +8,43 @@
 
     <link rel="stylesheet" href="./css/home.css" type="text/css">
     <title>Home</title>
+
 </head>
 <body>
+
+<a class="btn btn-danger navbar-btn" href="login.html">Logout</a>
+<div class="container" id="home-container">
+    <div id="song-form-container">
+        <form id="song-form">
+            <div class="form-group">
+                <textarea class="form-control" id="song-input" placeholder="Add a song..." rows="2"></textarea>
+            </div>
+            <button id="submit-button" type="submit" class="btn btn-primary mt-1">Submit</button>
+        </form>
+
+        <div id="song-container" class="container-fluid"></div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="note-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="song-edit-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="song-edit-modal-title">Edit your song</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+                <textarea class="form-control" rows="2" id="song-body"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="update-note-button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
