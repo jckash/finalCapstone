@@ -1,0 +1,53 @@
+body{
+    background-color: black;
+}
+
+.button-container {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    padding: 10px;
+    text-align: center;
+    border: none;
+}
+
+h1 {
+font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: white;
+}
+
+h2 {
+font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: white;
+    padding-bottom: 100px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+    width: 100vw;
+    max-width: 75%;
+
+}
+
+#register {
+    background-color: black;
+    color: white;
+}
+
+#login {
+       background-color: black;
+        color: white;
+}
+
+h3 {
+
+    font-family: 'Playfair Display', serif;
+   width: 600px;
+   margin: 0 auto;
+    color: white;
+    padding-bottom: 100px;
+}
