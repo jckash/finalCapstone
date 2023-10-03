@@ -7,58 +7,42 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "Songs")
+@Table(name = "songs")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Songs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(columnDefinition = "Song Title")
+    @Column(name = "song_title")
     private String songName;
 
-    @Column(columnDefinition = "Artist Name")
+    @Column(name = "artist_title")
     private String artist;
 
-    @Column(columnDefinition = "Album Title")
+    @Column(name = "album_title")
     private String album;
 
-    public long getId() {
-        return id;
-    }
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "song_memories",
+            joinColumns = @JoinColumn(name = "song_id"),
+            inverseJoinColumns = @JoinColumn(name = "memory_id")
+    )
+    private Set<Memories> memorySet = new HashSet<>();
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    @ManyToOne
+    @JsonBackReference
+    private Users user;
 
-    public String getSongName() {
-        return songName;
-    }
-
-    public void setSongName(String songName) {
-        this.songName = songName;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public String getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(String album) {
-        this.album = album;
-    }
 
 
     public Songs(long id, String songName, String artist, String album) {
@@ -68,9 +52,7 @@ public class Songs {
         this.album = album;
     }
 
-    @ManyToOne
-    @JsonBackReference
-    private Users user;
+
 
     public Songs(SongsDto songsDto) {
         if (songsDto.getSongName() != null) {

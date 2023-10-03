@@ -7,8 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
-@Table(name = "Memories")
+@Table(name = "memories")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,37 +18,22 @@ public class Memories {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(columnDefinition = "Season")
+    @Column(name = "season")
     private String season;
 
-    @Column(columnDefinition = "Memory")
+    @Column(name = "memory")
     private String memory;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToMany(mappedBy = "memorySet", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
+    @JsonBackReference
+    private Set<Songs> setOfSongs;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
-    public String getMemory() {
-        return memory;
-    }
-
-    public void setMemory(String memory) {
-        this.memory = memory;
-    }
+    @ManyToOne
+    @JsonBackReference
+    private Users user;
 
 
     public Memories(Long id, String season, String memory) {
@@ -55,9 +42,7 @@ public class Memories {
         this.memory = memory;
     }
 
-    @ManyToOne
-    @JsonBackReference
-    private Users user;
+
 
     public Memories(MemoriesDto memoriesDto){
 

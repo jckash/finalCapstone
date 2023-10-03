@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/reqister")
+    @PostMapping("/register")
     public List<String> addUser(@RequestBody UsersDto usersDto) {
         String passHash = passwordEncoder.encode(usersDto.getPassword());
         usersDto.setPassword(passHash);

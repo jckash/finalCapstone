@@ -8,9 +8,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +23,7 @@ public class Users {
     private Long id;
 
    @Column(unique = true)
-private String username;
+    private String username;
 
    @Column
    private String password;
@@ -30,37 +31,14 @@ private String username;
    @Column(unique = true)
    private String email;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonManagedReference
+    private Set<Songs> songsSet = new HashSet<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonManagedReference
+    private Set<Memories> memoriesSet = new HashSet<>();
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
 
     public Users(Long id, String username, String password, String email) {
@@ -70,13 +48,7 @@ private String username;
         this.email = email;
     }
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonManagedReference
-    private HashSet<Songs> songsHashSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonManagedReference
-    private HashSet<Memories> memoriesHashSet = new HashSet<>();
 
 
     public Users(UsersDto usersDto){

@@ -1,6 +1,7 @@
 const registerForm = document.getElementById('register-form')
 const registerUsername = document.getElementById('register-username')
 const registerPassword = document.getElementById('register-password')
+const registerEmail = document.getElementById('register-email')
 
 const headers = {
     'Content-Type':'application/json'
@@ -13,8 +14,9 @@ const handleSubmit = async (e) =>{
 
     let bodyObj = {
 
-    username: registerUsername.value,
-    password: registerPassword.value
+        username: registerUsername.value,
+        password: registerPassword.value,
+        email: registerEmail.value
     }
 
     const response = await fetch(`${baseUrl}/register`, {

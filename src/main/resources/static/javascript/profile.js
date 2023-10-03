@@ -1,22 +1,26 @@
+
+//Cookie
 const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
 
-
+//DOM Elements
 const submitForm = document.getElementById("song-form")
-const noContainer = document.getElementById("song-container")
+const songContainer = document.getElementById("song-container")
 
-
-let songBody = document.getElementById('note-body')
-let updateSongBtn = document.getElementById('update-note-button')
+//Modal Elements
+let songBody = document.getElementById('song-body')
+let updateSongBtn = document.getElementById('update-song-button')
 
 
 const headers = {
         'Content-Type': 'application/json'
 }
 
-const baseUrl = "http://localhost:8080/api/v1/notes/"
+const baseUrl = "http://localhost:8080/api/v1/songs/"
 
+
+//Logout that clears cookie
 
 function handleLogout(){
     let c = document.cookie.split(";");
@@ -25,6 +29,7 @@ function handleLogout(){
     }
 }
 
+// Form submits new songs
 
 const handleSubmit = async (e) => {
     e.preventDefault()
@@ -64,11 +69,11 @@ async function getSongs(userId) {
 
 
 async function getSongById(songId){
-    await fetch(input:baseUrl + songId, init:{
+    await fetch(baseUrl + songId, {
         method: "GET",
         headers: headers
     })
-        .then(res => res.json())Promise
+        .then(res => res.json())
         .then(data => populateModal(data))
         .catch(err => console.error(err.message))
 }
@@ -115,7 +120,7 @@ const createSongCards = (array) => {
                     <div class="d-flex justify-content-between">
                          <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
                           <button onclick="getSongById(${obj.id})" type="button" class="btn btn-primary"
-                           data-bs-toggle="modal" data-bs-target="#note-edit-modal">
+                           data-bs-toggle="modal" data-bs-target="#song-edit-modal">
                            Edit
                            </button>
                        </div>
@@ -144,4 +149,3 @@ updateSongBtn.addEventListener("click", (e)=>{
     handleSongEdit(songId);
 })
 
-<a class="btn btn-danger navbar-btn" href="./login.html" onclick="handleLogout()">Logout</a>

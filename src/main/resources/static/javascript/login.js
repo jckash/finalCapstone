@@ -1,3 +1,13 @@
+const loginForm = document.getElementById('login-form');
+const loginUsername = document.getElementById('login-username');
+const loginPassword = document.getElementById('login-password');
+
+const headers = {
+    'Content-Type':'application/json'
+}
+
+const baseUrl = 'http://localhost:8080/api/v1/users'
+
 const handleSubmit = async (e) =>{
        e.preventDefault()
 
@@ -6,7 +16,7 @@ const handleSubmit = async (e) =>{
             password: loginPassword.value
        }
 
-       const response = await fetch(input:`${baseUrl}/login`, init{
+       const response = await fetch(`${baseUrl}/login`, {
              method: "POST",
              body: JSON.stringify(bodyObj),
              headers: headers
@@ -21,4 +31,4 @@ const handleSubmit = async (e) =>{
        }
 }
 
-loginForm.addEventListener(type:"submit", handleSubmit)
+loginForm.addEventListener("submit", handleSubmit)
