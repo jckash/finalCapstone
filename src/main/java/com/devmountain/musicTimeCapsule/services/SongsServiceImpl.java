@@ -25,11 +25,13 @@ public class SongsServiceImpl implements SongsService {
 
     @Override
     @Transactional
-    public void addSong(SongsDto songsDto, Long userId) {
+    public Songs addSong(SongsDto songsDto, Long userId) {
         Optional<Users> usersOptional = userRepository.findById(userId);
         Songs songs = new Songs(songsDto);
+        System.out.println(songs);
         usersOptional.ifPresent(songs::setUser);
         songsRepository.saveAndFlush(songs);
+        return songs;
 
     }
 

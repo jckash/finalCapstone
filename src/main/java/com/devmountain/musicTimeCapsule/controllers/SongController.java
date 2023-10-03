@@ -1,6 +1,7 @@
 package com.devmountain.musicTimeCapsule.controllers;
 
 import com.devmountain.musicTimeCapsule.dtos.SongsDto;
+import com.devmountain.musicTimeCapsule.entities.Songs;
 import com.devmountain.musicTimeCapsule.services.SongsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,8 @@ public class SongController {
 
     }
 @PostMapping("/user/{userId}")
-    public void addSong(@RequestBody SongsDto songsDto, @PathVariable Long userId){
-        songsService.addSong(songsDto, userId);
+    public Songs addSong(@RequestBody SongsDto songsDto, @PathVariable Long userId){
+        return songsService.addSong(songsDto, userId);
     }
 
     @DeleteMapping("/{songId}")

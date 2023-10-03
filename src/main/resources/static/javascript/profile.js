@@ -5,12 +5,12 @@ const userId = cookieArr[1];
 
 
 //DOM Elements
-const submitForm = document.getElementById("song-form")
+const submitForm = document.getElementById("songForm")
 const songContainer = document.getElementById("song-container")
 
 //Modal Elements
-let songBody = document.getElementById('song-body')
-let updateSongBtn = document.getElementById('update-song-button')
+//let songName = document.getByElementId('songName')
+//let updateSongBtn = document.getElementById('update-song-button')
 
 
 const headers = {
@@ -32,12 +32,16 @@ function handleLogout(){
 // Form submits new songs
 
 const handleSubmit = async (e) => {
-    e.preventDefault()
     let bodyObj = {
-        body: document.getElementById("note-input").value
+        songName: document.getElementById("songName1").value,
+        artist: document.getElementById("artist").value,
+        album: document.getElementById("album").value
     }
+
     await addSong(bodyObj);
-    document.getElementById("note-input").value = ''
+//    document.getElementById("songName1").value = ''
+//    document.getElementById("artist").value = ''
+//    document.getElementById("album").value = ''
 }
 
 async function addSong(obj) {
@@ -45,11 +49,19 @@ async function addSong(obj) {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers
+    }).then((response)=>{
+    console.log(response)
+    return response.json()
+    }).then((data)=>{
+    console.log(data)
+    createSongCards(data)
     })
-        .catch(err => console.error(err.message))
-    if (response.status == 200) {
-    return getSongs(userId);
-    }
+//        .catch(err => console.error(err.message))
+//    if (response.status == 200) {
+//    return getSongs(userId);
+//    }
+console.log("song added")
+ getSongs(userId);
 }
 
 
@@ -106,32 +118,34 @@ async function handleDelete(songId){
     return getSongs(userId);
 }
 
+//function using form input
+ function createSongCards(data) {
+// console.log(data)
+//      const songName = document.getElementById("songName").value;
+//      const artist = document.getElementById("artist").value;
+//      const album = document.getElementById("album").value;
+
+//create new card element
+      const card = document.createElement("div");
+            card.classList.add("song-card");
+            card.innerHTML = `
+              <h2>songName</h2>
+              <p><strong>Artist:</strong> artist</p>
+              <p><strong>Album:</strong> album</p>
+            `;
+
+const cardContainer = document.getElementById("cardContainer");
+      cardContainer.appendChild(card);
+
+ document.getElementById("songForm").reset();
+    }
 
 
-const createSongCards = (array) => {
-    songContainer.innerHTML = ''
-    array.forEach(obj => {
-        let songCard = document.createElement("div")
-        songCard.classList.add("m-2")
-        songCard.innerHTML = `
-            <div class="card d-flex" style="width: 18rem; height: 18rem;">
-                <div class="card-body d-flex flex-column justify-content-between" style="height: available">
-                    <p class="card-text">${obj.body}</p>
-                    <div class="d-flex justify-content-between">
-                         <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
-                          <button onclick="getSongById(${obj.id})" type="button" class="btn btn-primary"
-                           data-bs-toggle="modal" data-bs-target="#song-edit-modal">
-                           Edit
-                           </button>
-                       </div>
-                 </div>
-            </div>
-
-        `
-        songContainer.append(songCard);
-    })
-}
-
+document.getElementById("songForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      handleSubmit();
+      createSongCards();
+})
 
 const populateModal = (obj) =>{
     songBody.innerText = ''
@@ -144,8 +158,7 @@ getSongs(userId);
 
 submitForm.addEventListener("submit", handleSubmit)
 
-updateSongBtn.addEventListener("click", (e)=>{
-    let songId = e.target.getAttribute('data-song-id')
-    handleSongEdit(songId);
-})
-
+//updateSongBtn.addEventListener("click", (e)=>{
+//    let songId = e.target.getAttribute('data-song-id')
+//    handleSongEdit(songId);
+//})

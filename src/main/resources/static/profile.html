@@ -17,25 +17,10 @@
   <h3> Remember your year in music. </h3>
 </div>
 
-<a class="btn btn-danger navbar-btn" href="./login.html" onclick="handleLogout()">Logout</a>
 <br>
 <br>
 <br>
 <br>
-
-<div class="container" id="home-container">
-  <div id="song-form-container">
-    <form id="song-form">
-      <div class="form-group">
-        <textarea class="form-control" id="song-input" placeholder="Add a song..." rows="2"></textarea>
-      </div>
-      <button id="submit-button" type="submit" class="song-submit">Submit</button>
-    </form>
-
-    <div id="song-container" class="container-fluid"></div>
-  </div>
-</div>
-
 <br>
 <br>
 
@@ -60,11 +45,11 @@
 <div>
   <fieldset class="song-container">
     <legend>Add a new Song</legend>
-    <form class="song-form">
+    <form class="song-form" id="songForm">
       <table>
         <tr>
-          <td><label for="songName">Song Name:</label></td>
-          <td><input type="text" id="songName" name="songName"></td>
+          <td><label for="songName1">Song Name:</label></td>
+          <td><input type="text" id="songName1" name="songName"></td>
         </tr>
         <tr>
           <td><label for="artist">Artist:</label></td>
@@ -78,18 +63,7 @@
     </form>
   </fieldset>
 
-
-
-
-
-</div>
-
-
-
-
-
-
-
+  <div id="cardContainer"></div>
 
 
 <a class="btn btn-danger navbar-btn" href="login.html">Logout</a>

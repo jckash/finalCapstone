@@ -56,7 +56,6 @@ async function getSongs(userId) {
         headers: headers
     })
             .then(response => response.json())
-            .then(data => createSongCards(data))
             .catch(err => console.error(err))
 }
 
@@ -103,29 +102,6 @@ async function handleDelete(songId){
 
 
 
-const createSongCards = (array) => {
-    songContainer.innerHTML = ''
-    array.forEach(obj => {
-        let songCard = document.createElement("div")
-        songCard.classList.add("m-2")
-        songCard.innerHTML = `
-            <div class="card d-flex" style="width: 18rem; height: 18rem;">
-                <div class="card-body d-flex flex-column justify-content-between" style="height: available">
-                    <p class="card-text">${obj.body}</p>
-                    <div class="d-flex justify-content-between">
-                         <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
-                          <button onclick="getSongById(${obj.id})" type="button" class="btn btn-primary"
-                           data-bs-toggle="modal" data-bs-target="#note-edit-modal">
-                           Edit
-                           </button>
-                       </div>
-                 </div>
-            </div>
-
-        `
-        songContainer.append(songCard);
-    })
-}
 
 
 const populateModal = (obj) =>{
