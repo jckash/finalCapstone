@@ -120,18 +120,23 @@ async function handleDelete(songId){
 
 //function using form input
  function createSongCards(data) {
-// console.log(data)
+ console.log(data)
 //      const songName = document.getElementById("songName").value;
 //      const artist = document.getElementById("artist").value;
 //      const album = document.getElementById("album").value;
 
 //create new card element
+if (data.length === 0 ){
+    return
+}
+
+
       const card = document.createElement("div");
             card.classList.add("song-card");
             card.innerHTML = `
-              <h2>songName</h2>
-              <p><strong>Artist:</strong> artist</p>
-              <p><strong>Album:</strong> album</p>
+              <h2>${data.songName}</h2>
+              <p><strong>Artist:</strong> ${data.artist}</p>
+              <p><strong>Album:</strong> ${data.album}</p>
             `;
 
 const cardContainer = document.getElementById("cardContainer");
@@ -144,7 +149,7 @@ const cardContainer = document.getElementById("cardContainer");
 document.getElementById("songForm").addEventListener("submit", function (e) {
       e.preventDefault();
       handleSubmit();
-      createSongCards();
+//      createSongCards();
 })
 
 const populateModal = (obj) =>{
@@ -156,7 +161,7 @@ const populateModal = (obj) =>{
 
 getSongs(userId);
 
-submitForm.addEventListener("submit", handleSubmit)
+//submitForm.addEventListener("submit", handleSubmit)
 
 //updateSongBtn.addEventListener("click", (e)=>{
 //    let songId = e.target.getAttribute('data-song-id')
