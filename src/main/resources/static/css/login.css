@@ -1,24 +1,59 @@
+body{
+background-color: rgba(245, 245, 220, 0.7);
+}
+
 .top-bar {
-background-color: grey;
+background-color: black;
 height: 200px;
 width: 100%
 padding:10px 0;
 }
 
 h1  {
+    font-family: 'Playfair Display', serif;
    text-align: center;
    color: white;
    padding: 20px;
    }
 
 h3  {
+    font-family: 'Playfair Display', serif;
    text-align: center;
    color: white;
-
+   font-size: 20px;
    }
 
-.login-subtitle {
-text-align: center;
-color: grey;
-padding: 20px;
+#login-subtitle {
+    font-family: 'Playfair Display', serif;
+    margin-left: 350px;
+    color: black;
+    margin-top: 125px;
+    font-size: 35px;
 }
+
+.container {
+    font-family: 'Playfair Display', serif;
+}
+
+.redirect {
+    margin-left: 275px;
+    margin-bottom: 75px;
+}
+
+.form-group{
+    margin-left: 300px;
+    margin-top:50px;
+}
+
+.submit{
+     margin-left: 360px;
+}
+
+img{
+    width: 30%;
+    margin-right: 175px;
+    float: right;
+    margin-top: -325px;
+    margin-bottom: 40px;
+}
+

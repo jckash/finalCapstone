@@ -1,0 +1,58 @@
+body{
+    background-color: rgba(245, 245, 220, 0.7)
+}
+
+.top-bar {
+background-color: black;
+height: 200px;
+width: 100%
+padding:10px 0;
+}
+
+h1  {
+    font-family: 'Playfair Display', serif;
+   text-align: center;
+   color: white;
+   padding: 20px;
+   }
+
+h3  {
+    font-family: 'Playfair Display', serif;
+   text-align: center;
+   color: white;
+   font-size: 20px;
+   }
+
+#register-subtitle{
+    font-family: 'Playfair Display', serif;
+    margin-left: 0px;
+    color: black;
+    margin-top: 125px;
+    font-size: 35px;
+}
+
+.form-group{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.login {
+    font-family: 'Playfair Display', serif;
+    margin-left: 635px;
+    margin-bottom: 250px;
+}
+
+.submit {
+    margin-top: 100px;
+    margin-left: 665px;
+    margin-bottom: 75px;
+    font-family: 'Playfair Display', serif;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 50px;
+    width: 150px;
+    font-size: 18px;
+}
