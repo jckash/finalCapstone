@@ -39,9 +39,6 @@ const handleSubmit = async (e) => {
     }
 
     await addSong(bodyObj);
-//    document.getElementById("songName1").value = ''
-//    document.getElementById("artist").value = ''
-//    document.getElementById("album").value = ''
 }
 
 async function addSong(obj) {
@@ -56,10 +53,6 @@ async function addSong(obj) {
     console.log(data)
     createSongCards(data)
     })
-//        .catch(err => console.error(err.message))
-//    if (response.status == 200) {
-//    return getSongs(userId);
-//    }
 console.log("song added")
  getSongs(userId);
 }
@@ -196,3 +189,121 @@ getSongs(userId);
 //    let songId = e.target.getAttribute('data-song-id')
 //    handleSongEdit(songId);
 //})
+
+
+// Create for Memories card
+
+//DOM Elements
+const submitSecondForm = document.getElementById("memoryForm")
+const memoryContainer = document.getElementById("memory-container")
+
+const headers = {
+        'Content-Type': 'application/json'
+}
+
+const baseUrl = "http://localhost:8080/api/v1/memories/"
+
+// Form submits new memories
+
+const handleSubmit = async (e) => {
+    let bodyObj = {
+        season: document.getElementById("season").value,
+        memory: document.getElementById("memoryName1").value,
+    }
+
+    await addMemory(bodyObj);
+}
+
+async function addMemory(obj) {
+    const response = await fetch(`${baseUrl}user/${userId}`, {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: headers
+    }).then((response)=>{
+    console.log(response)
+    return response.json()
+    }).then((data)=>{
+    console.log(data)
+    createMemoryCards(data)
+    })
+console.log("memory added")
+ getMemories(userId);
+}
+
+async function getMemories(userId) {
+    await fetch(`${baseUrl}user/${userId}`, {
+        method: "GET",
+        headers: headers
+    })
+            .then(response => response.json())
+            .then(data => createMemoryCards(data))
+            .catch(err => console.error(err))
+}
+
+async function getMemoryById(memoryId){
+    await fetch(baseUrl + memoryId, {
+        method: "GET",
+        headers: headers
+    })
+        .then(res => res.json())
+        .then(data => populateModal(data))
+        .catch(err => console.error(err.message))
+}
+
+//function using form input
+ function createMemoryCards(data) {
+ console.log(data)
+
+
+//create new card element
+if (data.length === 0 ){
+    return
+}
+
+
+      const card = document.createElement("div");
+            card.classList.add("memory-card");
+            card.innerHTML = `
+              <h2>${data.season}</h2>
+              <p><strong>Memory:</strong> ${data.memory}</p>
+              <button class="edit-button">Edit</button>
+              <button class="delete-button">Delete</button>
+            `;
+
+    const cardContainer = document.getElementById("memoryCardContainer");
+      cardContainer.appendChild(card);
+
+    document.getElementById("memoryForm").reset();
+
+    const deleteButton = card.querySelector(".delete-button");
+    deleteButton.addEventListener("click", function () {
+    card.remove();
+    });
+
+
+    const editButton = card.querySelector(".edit-button");
+          editButton.addEventListener("click", function () {
+
+          const h2 = card.querySelector("h2");
+                  const memorySpan = card.querySelector("p strong:first-child + span");
+
+
+                  h2.contentEditable = !h2.isContentEditable;
+                          memorySpan.contentEditable = !memorySpan.isContentEditable;
+
+
+
+                   if (h2.isContentEditable) {
+                             editButton.textContent = "Save";
+                           } else {
+                             editButton.textContent = "Edit";
+                           }
+          });
+    }
+
+
+document.getElementById("memoryForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      handleSubmit();
+      createMemoryCards();
+});

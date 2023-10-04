@@ -24,23 +24,6 @@
 <br>
 <br>
 
-<div class="modal fade" id="song-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="song-edit-modal-title" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="song-edit-modal-title">Edit your song</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body d-flex">
-        <textarea class="form-control" rows="2" id="song-body"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="update-song-button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div>
   <fieldset class="song-container">
@@ -62,11 +45,34 @@
       <button id="submit" type="submit" class="song-submit">Submit</button>
     </form>
   </fieldset>
+</div>
+
 
   <div id="cardContainer"></div>
 
+<div>
+  <fieldset class="memory-container">
+    <legend>Add a new Memory</legend>
+    <form class="memory-form" id="memoryForm">
+      <table>
+        <tr>
+          <td><label for="season">Season:</label></td>
+          <td><input type="text" id="season" name="season"></td>
+        </tr>
+        <tr>
+          <td><label for="memoryName1">Memory:</label></td>
+          <td><input type="text" id="memoryName1" name="memory"></td>
+      </table>
+      <button id="memory-submit" type="submit" class="memory-submit">Submit</button>
+    </form>
+  </fieldset>
+</div>
 
-<a class="btn btn-danger navbar-btn" href="login.html">Logout</a>
+
+<div id="memoryCardContainer"></div>
+
+
+<a class="btn btn-danger navbar-btn" id="logout" href="login.html">Logout</a>
 
 
 

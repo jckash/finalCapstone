@@ -47,6 +47,16 @@ h3  {
 
 .submit{
      margin-left: 360px;
+     font-family: 'Playfair Display', serif;
+     background-color: black;
+         color: white;
+         border-radius: 10px;
+         cursor: pointer;
+         display: inline-block;
+         height: 50px;
+         width: 150px;
+         font-size: 18px;
+
 }
 
 img{
@@ -56,4 +66,5 @@ img{
     margin-top: -325px;
     margin-bottom: 40px;
 }
+
 

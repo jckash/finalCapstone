@@ -1,6 +1,7 @@
 package com.devmountain.musicTimeCapsule.services;
 
 import com.devmountain.musicTimeCapsule.dtos.MemoriesDto;
+import com.devmountain.musicTimeCapsule.entities.Memories;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 public interface MemoriesService {
     @Transactional
-    void addMemory(MemoriesDto memoriesDto, Long userId);
+    Memories addMemory(MemoriesDto memoriesDto, Long userId);
 
     @Transactional
     void deleteMemoryById(Long memoryId);

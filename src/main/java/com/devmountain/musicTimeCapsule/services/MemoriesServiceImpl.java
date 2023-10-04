@@ -9,7 +9,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +25,13 @@ public class MemoriesServiceImpl implements MemoriesService {
 
     @Override
     @Transactional
-public void addMemory(MemoriesDto memoriesDto, Long userId){
+public Memories addMemory(MemoriesDto memoriesDto, Long userId){
     Optional<Users> usersOptional = userRepository.findById(userId);
     Memories memories = new Memories(memoriesDto);
     usersOptional.ifPresent(memories::setUser);
     memoriesRepository.saveAndFlush(memories);
-}
+        return memories;
+    }
 
 @Override
 @Transactional

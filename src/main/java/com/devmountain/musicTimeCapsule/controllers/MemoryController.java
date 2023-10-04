@@ -1,6 +1,7 @@
 package com.devmountain.musicTimeCapsule.controllers;
 
 import com.devmountain.musicTimeCapsule.dtos.MemoriesDto;
+import com.devmountain.musicTimeCapsule.entities.Memories;
 import com.devmountain.musicTimeCapsule.services.MemoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,19 +9,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
+@RequestMapping("api/v1/memories")
 public class MemoryController {
 
     @Autowired
     private MemoriesService memoriesService;
 
     @GetMapping("user/{userId}")
-    public List<MemoriesDto> getMemoriesByUser(Long userId){
+    public List<MemoriesDto> getMemoriesByUser(@PathVariable Long userId){
         return memoriesService.getAllMemoriesByUserId(userId);
     }
 
     @PostMapping("/user/{userId}")
-    public void addMemory(@RequestBody MemoriesDto memoriesDto, @PathVariable Long userId){
-        memoriesService.addMemory(memoriesDto, userId);
+    public Memories addMemory(@RequestBody MemoriesDto memoriesDto, @PathVariable Long userId){
+        return memoriesService.addMemory(memoriesDto, userId);
     }
 
     @DeleteMapping("/{memoryId}")
@@ -28,8 +31,8 @@ public class MemoryController {
         memoriesService.deleteMemoryById(memoryId);
     }
 
-    @PutMapping
-public void updateMemory(@RequestBody MemoriesDto memoriesDto){
+    @PostMapping
+    public void updateMemory(@RequestBody MemoriesDto memoriesDto){
         memoriesService.updateMemoryById(memoriesDto);
 }
 
