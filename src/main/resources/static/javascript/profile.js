@@ -149,7 +149,7 @@ const cardContainer = document.getElementById("cardContainer");
 document.getElementById("songForm").addEventListener("submit", function (e) {
       e.preventDefault();
       handleSubmit();
-//      createSongCards();
+      createSongCards();
 })
 
 const populateModal = (obj) =>{
