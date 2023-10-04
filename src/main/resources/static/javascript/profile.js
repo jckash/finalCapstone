@@ -137,12 +137,18 @@ if (data.length === 0 ){
               <h2>${data.songName}</h2>
               <p><strong>Artist:</strong> ${data.artist}</p>
               <p><strong>Album:</strong> ${data.album}</p>
+              <button class="delete-button">Delete</button>
             `;
 
-const cardContainer = document.getElementById("cardContainer");
+    const cardContainer = document.getElementById("cardContainer");
       cardContainer.appendChild(card);
 
- document.getElementById("songForm").reset();
+    document.getElementById("songForm").reset();
+
+    const deleteButton = card.querySelector(".delete-button");
+    deleteButton.addEventListener("click", function () {
+    card.remove();
+    });
     }
 
 
