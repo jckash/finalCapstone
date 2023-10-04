@@ -137,6 +137,7 @@ if (data.length === 0 ){
               <h2>${data.songName}</h2>
               <p><strong>Artist:</strong> ${data.artist}</p>
               <p><strong>Album:</strong> ${data.album}</p>
+              <button class="edit-button">Edit</button>
               <button class="delete-button">Delete</button>
             `;
 
@@ -149,6 +150,26 @@ if (data.length === 0 ){
     deleteButton.addEventListener("click", function () {
     card.remove();
     });
+
+
+    const editButton = card.querySelector(".edit-button");
+          editButton.addEventListener("click", function () {
+
+          const h2 = card.querySelector("h2");
+                  const artistSpan = card.querySelector("p strong:first-child + span");
+                  const albumSpan = card.querySelector("p strong:last-child + span");
+
+                  h2.contentEditable = !h2.isContentEditable;
+                          artistSpan.contentEditable = !artistSpan.isContentEditable;
+                          albumSpan.contentEditable = !albumSpan.isContentEditable;
+
+
+                   if (h2.isContentEditable) {
+                             editButton.textContent = "Save";
+                           } else {
+                             editButton.textContent = "Edit";
+                           }
+          });
     }
 
 
@@ -156,13 +177,15 @@ document.getElementById("songForm").addEventListener("submit", function (e) {
       e.preventDefault();
       handleSubmit();
       createSongCards();
-})
+});
 
-const populateModal = (obj) =>{
-    songBody.innerText = ''
-    songBody.innerText = obj.body
-    updateSongBtn.setAttribute('data-song-id', obj.id)
-}
+
+
+//const populateModal = (obj) =>{
+//    songBody.innerText = ''
+//    songBody.innerText = obj.body
+//    updateSongBtn.setAttribute('data-song-id', obj.id)
+//}
 
 
 getSongs(userId);
