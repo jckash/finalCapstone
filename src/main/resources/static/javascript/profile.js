@@ -128,8 +128,8 @@ if (data.length === 0 ){
             card.classList.add("song-card");
             card.innerHTML = `
               <h2>${data.songName}</h2>
-              <p><strong>Artist:</strong> ${data.artist}</p>
-              <p><strong>Album:</strong> ${data.album}</p>
+              <p><strong>Artist:</strong> <span>${data.artist}</span></p>
+              <p><strong>Album:</strong> <span>${data.album}</span></p>
               <button class="edit-button">Edit</button>
               <button class="delete-button">Delete</button>
             `;
@@ -197,15 +197,13 @@ getSongs(userId);
 const submitSecondForm = document.getElementById("memoryForm")
 const memoryContainer = document.getElementById("memory-container")
 
-const headers = {
-        'Content-Type': 'application/json'
-}
 
-const baseUrl = "http://localhost:8080/api/v1/memories/"
+
+const baseUrlTwo = "http://localhost:8080/api/v1/memories/"
 
 // Form submits new memories
 
-const handleSubmit = async (e) => {
+const handleMemorySubmit = async (e) => {
     let bodyObj = {
         season: document.getElementById("season").value,
         memory: document.getElementById("memoryName1").value,
@@ -215,7 +213,7 @@ const handleSubmit = async (e) => {
 }
 
 async function addMemory(obj) {
-    const response = await fetch(`${baseUrl}user/${userId}`, {
+    const response = await fetch(`${baseUrlTwo}user/${userId}`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers
@@ -231,7 +229,7 @@ console.log("memory added")
 }
 
 async function getMemories(userId) {
-    await fetch(`${baseUrl}user/${userId}`, {
+    await fetch(`${baseUrlTwo}user/${userId}`, {
         method: "GET",
         headers: headers
     })
@@ -241,7 +239,7 @@ async function getMemories(userId) {
 }
 
 async function getMemoryById(memoryId){
-    await fetch(baseUrl + memoryId, {
+    await fetch(baseUrlTwo + memoryId, {
         method: "GET",
         headers: headers
     })
@@ -304,6 +302,6 @@ if (data.length === 0 ){
 
 document.getElementById("memoryForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      handleSubmit();
+      handleMemorySubmit();
       createMemoryCards();
 });
